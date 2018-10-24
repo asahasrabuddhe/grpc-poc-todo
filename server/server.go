@@ -2,8 +2,8 @@ package server
 
 import (
 	"go.ajitem.com/pb/todo"
+	"go.ajitem.com/pb/user"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
 )
@@ -14,9 +14,13 @@ func Run() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
+	// Register User Service
+	user.RegisterUserServiceServer(s, &UserHandler{Allowed: []string{
+		"Register", "Login", "ForgotPassword",
+	}})
+	// Register Todo Service
 	todo.RegisterTodoServiceServer(s, &TodoHandler{})
-	// Register reflection service on gRPC server.
-	reflection.Register(s)
+
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

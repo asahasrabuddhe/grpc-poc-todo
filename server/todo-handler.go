@@ -24,3 +24,16 @@ func (th *TodoHandler) CreateTodo(ctx context.Context, req *todo.CreateTodoReque
 
 	return &todo.CreateTodoResponse{}, nil
 }
+
+func (th *TodoHandler) ReadTodo(context.Context, *todo.ReadTodoRequest) (*todo.ReadTodoResponse, error) {
+
+}
+func (th *TodoHandler) ReadTodos(context.Context, *todo.ReadTodosRequest) (*todo.ReadTodosResponse, error) {
+
+}
+func (th *TodoHandler) UpdateTodo(context.Context, *todo.UpdateTodoRequest) (*todo.UpdateTodoResponse, error) {
+
+}
+func (th *TodoHandler) DeleteTodo(context.Context, *todo.DeleteTodoRequest) (*todo.DeleteTodoResponse, error) {
+
+}
